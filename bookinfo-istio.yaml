@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+    name: bookinfo
+spec:
+    selector:
+        istio: ingressgateway
+    servers:
+    - hosts:
+      - '*'
+      port:
+        name: http
+        protocol: HTTP
+        number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+    name: bookinfo
+spec:
+    hosts:
+    - '*'
+    gateways:
+    - bookinfo
+    http:
+    - route:
+      - destination:
+          host: productpage
+          port:
+            number: 9080
