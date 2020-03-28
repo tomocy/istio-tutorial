@@ -26,5 +26,3 @@ spec:
     - route:
       - destination:
           host: productpage
-          port:
-            number: 9080
